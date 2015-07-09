@@ -16,7 +16,6 @@ web:
     extra_hosts:
       - "backend.local:127.0.0.1"
       - "frontend.local:127.0.0.1"
-
 mysql:
   image: mysql:5.6
   ports:
