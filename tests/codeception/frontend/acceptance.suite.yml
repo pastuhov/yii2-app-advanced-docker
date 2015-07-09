@@ -11,6 +11,7 @@
 class_name: AcceptanceTester
 modules:
     enabled:
+        - Asserts
         - PhpBrowser
         - tests\codeception\common\_support\FixtureHelper
 # you can use WebDriver instead of PhpBrowser to test javascript and ajax.
