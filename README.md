@@ -42,3 +42,5 @@ $ ./test/codeception/bin/yii migrate
 $ codecept build
 $ codecept run
 ```
+## More info
+See docker-compose.yml
