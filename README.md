@@ -1,9 +1,14 @@
-# yii2-app-docker
-Experemental dockerized yii2-app-advanced.
+# Experemental dockerized yii2-app-advanced.
+
 On board:
 * Apache2
+  * vhost backend.local
+  * vhost frintend.local
 * PHP5
+  * yii2-app-advanced
+  * codeception
 * Mysql server
+  * dbname: web
 * Redis server
 
 ## Start up
