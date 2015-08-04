@@ -7,15 +7,18 @@ web:
     volumes:
         - ./:/var/www/html/
         - ./docker/vhosts/:/etc/apache2/sites-enabled/
+        - $SSH_AUTH_SOCK:/tmp/agent.sock
     links:
         - mysql
         - redis
+        - seleniumhub
     environment:
-        ENABLE_ENV_FILE: 1
-        ENABLE_LOCALCONF: 1
+        - SSH_AUTH_SOCK=/tmp/agent.sock
+        - TERM=xterm-256color
     extra_hosts:
       - "backend.local:127.0.0.1"
       - "frontend.local:127.0.0.1"
+      
 mysql:
   image: mysql:5.6
   ports:
@@ -27,7 +30,20 @@ mysql:
     MYSQL_DATABASE: web
     MYSQL_USER: web
     MYSQL_PASSWORD: web
+    
 redis:
-  image: redis
+  image: redis:2
+  command: /usr/local/bin/mongod --smallfiles
   ports:
     - "6389:6379"
+    
+seleniumhub:
+  image: selenium/hub
+
+seleniumfirefox:
+  image: selenium/node-firefox-debug
+  links:
+    - seleniumhub:hub
+    - php
+  ports:
+    - "49338:5900"
